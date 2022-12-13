@@ -1,0 +1,117 @@
+[
+  {
+    "name": "I-80",
+    "stops": [
+      {
+        "zipcode": "80601",
+        "city": "Brighton",
+        "state": "CO",
+        "lat": 39.983721,
+        "lon": -104.8110775
+      },
+      {
+        "zipcode": "69153",
+        "city": "Ogallala",
+        "state": "NE",
+        "lat": 41.1248328,
+        "lon": -101.7189583
+      },
+      {
+        "zipcode": "68803",
+        "city": "Grand Island",
+        "state": "NE",
+        "lat": 40.924271,
+        "lon": -98.338685
+      },
+      {
+        "zipcode": "68105",
+        "city": "Omaha",
+        "state": "NE",
+        "lat": 41.3233963,
+        "lon": -96.04864114418652
+      },
+      {
+        "zipcode": "50309",
+        "city": "Des Moines",
+        "state": "IA",
+        "lat": 41.5910323,
+        "lon": -93.6046655
+      },
+      {
+        "zipcode": "52802",
+        "city": "Davenport",
+        "state": "IA",
+        "lat": 41.5235808,
+        "lon": -90.5770967
+      },
+      {
+        "zipcode": "60423",
+        "city": "Frankfort",
+        "state": "IL",
+        "lat": 41.4958665,
+        "lon": -87.8486613
+      }
+    ]
+  },
+  {
+    "name": "I-70",
+    "stops": [
+      {
+        "zipcode": "80601",
+        "city": "Brighton",
+        "state": "CO",
+        "lat": 39.983721,
+        "lon": -104.8110775
+      },
+      {
+        "zipcode": "67741",
+        "city": "Kanorado",
+        "state": "KS",
+        "lat": 39.3330542,
+        "lon": -102.0379596
+      },
+      {
+        "zipcode": "67601",
+        "city": "Hays",
+        "state": "KS",
+        "lat": 38.8791783,
+        "lon": -99.3267702
+      },
+      {
+        "zipcode": "67401",
+        "city": "Salina",
+        "state": "KS",
+        "lat": 38.8402805,
+        "lon": -97.6114237
+      },
+      {
+        "zipcode": "64129",
+        "city": "Kansas City",
+        "state": "MO",
+        "lat": 39.100105,
+        "lon": -94.5781416
+      },
+      {
+        "zipcode": "63102",
+        "city": "Saint Louis",
+        "state": "MO",
+        "lat": 38.6319657,
+        "lon": -90.2428756
+      },
+      {
+        "zipcode": "61705",
+        "city": "Bloomington",
+        "state": "IL",
+        "lat": 40.4797828,
+        "lon": -88.9939147
+      },
+      {
+        "zipcode": "60423",
+        "city": "Frankfort",
+        "state": "IL",
+        "lat": 41.4958665,
+        "lon": -87.8486613
+      }
+    ]
+  }
+]

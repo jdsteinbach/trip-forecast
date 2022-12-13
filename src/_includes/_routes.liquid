@@ -1,0 +1,41 @@
+---
+layout: _base
+---
+
+{{ content }}
+
+{% for r in routeData %}
+  <section>
+    <h2>
+      {{ r.name }}
+    </h2>
+
+    <table>
+      <thead>
+        <th></th>
+        {% for dayTitle in r.stops[0].data.daily %}
+          <th>{{ dayTitle.dt | day }}</th>
+        {% endfor %}
+      </thead>
+      {% for s in r.stops %}
+        <tr>
+          <th>{{ s.city }}, {{ s.state }}</th>
+          {% for d in s.data.daily %}
+            <td class="{{ d | precipClasses }}" style="{{ d | precipStyles }}">
+              <p class="condition">
+                <span>{{ d.temp.day | temp }}</span>
+                <span>{{ d.weather[0].main }}</span>
+              </p>
+              {% if d.rain %}
+                <p class="precip">Rain: {{ d.rain | pct }}</p>
+              {% endif %}
+              {% if d.snow %}
+                <p class="precip">Snow: {{ d.snow | pct }}</p>
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  </section>
+{% endfor %}
