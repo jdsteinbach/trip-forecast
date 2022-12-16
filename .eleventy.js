@@ -2,7 +2,7 @@ const format = require('date-fns/format');
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter('yn', (pct) => (pct ? 'Yes' : 'No'));
-  eleventyConfig.addFilter('amt', (amt) => `${Math.round(amt * 25.4)}″`);
+  eleventyConfig.addFilter('amt', (amt) => `${Math.round(amt)}″`);
   eleventyConfig.addFilter('day', (day) =>
     format(new Date(day * 1000), 'EEE, LLL d')
   );
@@ -25,7 +25,7 @@ module.exports = (eleventyConfig) => {
       pct = d.snow / 12;
     }
 
-    return `--pct: ${pct * 100}`;
+    return `--pct: ${pct}`;
   });
   eleventyConfig.addFilter('wind', (speed) => `${Math.round(speed)}mph`);
 
