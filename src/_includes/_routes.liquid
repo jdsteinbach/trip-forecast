@@ -19,21 +19,21 @@ layout: _base
       </thead>
       {% for s in r.stops %}
         <tr>
-          <th>{{ s.city }}, {{ s.state }}</th>
+          <th>{{ s.city }}</th>
           {% for d in s.data.daily %}
             <td class="{{ d | precipClasses }}" style="{{ d | precipStyles }}">
               <p class="condition">
-                <span>{{ d.temp.day | temp }}</span>
+                <span>{{ d.temp.day | round }}°</span>
                 <span>{{ d.weather[0].main }}</span>
               </p>
               {% if d.rain %}
-                <p class="precip">Rain: {{ d.rain | amt }}</p>
+                <p class="precip">Rain: {{ d.rain | round }}″</p>
               {% endif %}
               {% if d.snow %}
-                <p class="precip">Snow: {{ d.snow | amt }}</p>
+                <p class="precip">Snow: {{ d.snow | round }}″</p>
               {% endif %}
               <p class="wind">
-                Winds: {{ d.wind_speed | wind }} / {{ d.wind_gust | wind }}</p>
+                Wind {{ d.wind_speed | round }}–{{ d.wind_gust | round }}mph</p>
             </td>
           {% endfor %}
         </tr>
