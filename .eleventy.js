@@ -6,7 +6,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter('day', (day) =>
     format(new Date(day * 1000), 'EEE, LLL d')
   );
-  eleventyConfig.addFilter('temp', (temp) => `${Math.round(temp)}`);
+  eleventyConfig.addFilter('temp', (temp) => `${Math.round(temp)}°`);
   eleventyConfig.addFilter('json', (data) => JSON.stringify(data, null, 2));
   eleventyConfig.addFilter('precipClasses', (d) => {
     const classes = [];
