@@ -2,7 +2,7 @@ const format = require('date-fns/format');
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter('yn', (pct) => (pct ? 'Yes' : 'No'));
-  eleventyConfig.addFilter('pct', (pct) => `${Math.ceil(pct)}%`);
+  eleventyConfig.addFilter('amt', (amt) => `${Math.round(amt * 25.4)}%`);
   eleventyConfig.addFilter('day', (day) =>
     format(new Date(day * 1000), 'EEE, LLL d')
   );
@@ -16,8 +16,6 @@ module.exports = (eleventyConfig) => {
   });
   eleventyConfig.addFilter('precipStyles', (d) => {
     let pct = 0;
-
-    console.log(d.snow, d.rain);
 
     if (d.rain) {
       pct = d.rain / 100;
