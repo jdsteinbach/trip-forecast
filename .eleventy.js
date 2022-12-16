@@ -16,11 +16,11 @@ module.exports = (eleventyConfig) => {
     let pct = 0;
 
     if (d.rain) {
-      pct = d.rain / 12;
+      pct = (d.rain + 3) / 30;
     }
 
     if (d.snow) {
-      pct = d.snow / 12;
+      pct = (d.snow + 3) / 30;
     }
 
     return `--pct: ${pct}`;
