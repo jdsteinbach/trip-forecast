@@ -2,11 +2,11 @@ const format = require('date-fns/format');
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter('yn', (pct) => (pct ? 'Yes' : 'No'));
-  eleventyConfig.addFilter('amt', (amt) => `${Math.round(amt * 25.4)}%`);
+  eleventyConfig.addFilter('amt', (amt) => `${Math.round(amt * 25.4)}″`);
   eleventyConfig.addFilter('day', (day) =>
     format(new Date(day * 1000), 'EEE, LLL d')
   );
-  eleventyConfig.addFilter('temp', (temp) => `${Math.round(temp)}°`);
+  eleventyConfig.addFilter('temp', (temp) => `${Math.round(temp)}`);
   eleventyConfig.addFilter('json', (data) => JSON.stringify(data, null, 2));
   eleventyConfig.addFilter('precipClasses', (d) => {
     const classes = [];
@@ -18,15 +18,16 @@ module.exports = (eleventyConfig) => {
     let pct = 0;
 
     if (d.rain) {
-      pct = d.rain / 100;
+      pct = d.rain / 12;
     }
 
     if (d.snow) {
-      pct = d.snow / 100;
+      pct = d.snow / 12;
     }
 
-    return `--pct: ${pct}`;
+    return `--pct: ${pct * 100}`;
   });
+  eleventyConfig.addFilter('wind', (speed) => `${Math.round(speed)}mph`);
 
   eleventyConfig.addPassthroughCopy('src/styles.css');
   eleventyConfig.addWatchTarget('./src/**/*.css');

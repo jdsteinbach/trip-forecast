@@ -33,7 +33,7 @@ layout: _base
                 <p class="precip">Snow: {{ d.snow | amt }}</p>
               {% endif %}
               <p class="wind">
-                Winds at {{ d.wind_speed }}mph / {{ d.wind_gust }}mph</p>
+                Winds at {{ d.wind_speed | wind }} / {{ d.wind_gust | wind }}</p>
             </td>
           {% endfor %}
         </tr>
