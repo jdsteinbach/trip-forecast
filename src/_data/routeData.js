@@ -9,7 +9,7 @@ const routeData = routes.map((r) => {
   if (!OPENWEATHER_APIKEY) return r;
 
   const stopsForecast = Promise.all(
-    r.stops.map(async (s) => {
+    r.stops.reverse().map(async (s) => {
       const forecast = await axios
         .get(
           `https://api.openweathermap.org/data/3.0/onecall?lat=${s.lat}&lon=${s.lon}&units=imperial&appid=${OPENWEATHER_APIKEY}`
