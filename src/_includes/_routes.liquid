@@ -33,7 +33,7 @@ layout: _base
                 <p class="precip">Snow: {{ d.snow | roundMM }}″</p>
               {% endif %}
               <p class="wind">
-                Wind {{ d.wind_speed | round }}mph ⋮ {{ d.wind_gust | round }}</p>
+                Wind: {{ d.wind_speed | round }} ⋮ {{ d.wind_gust | round }}</p>
             </td>
           {% endfor %}
         </tr>
