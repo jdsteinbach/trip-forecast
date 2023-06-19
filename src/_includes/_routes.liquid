@@ -27,13 +27,13 @@ layout: _base
                 <span>{{ d.weather[0].main }}</span>
               </p>
               {% if d.rain %}
-                <p class="precip">Rain: {{ d.rain | round }}″</p>
+                <p class="precip">Rain: {{ d.rain | roundMM }}″</p>
               {% endif %}
               {% if d.snow %}
-                <p class="precip">Snow: {{ d.snow | round }}″</p>
+                <p class="precip">Snow: {{ d.snow | roundMM }}″</p>
               {% endif %}
               <p class="wind">
-                Wind {{ d.wind_speed | round }}–{{ d.wind_gust | round }}mph</p>
+                Wind {{ d.wind_speed | round }}mph ⋮ {{ d.wind_gust | round }}</p>
             </td>
           {% endfor %}
         </tr>

@@ -25,7 +25,9 @@ module.exports = (eleventyConfig) => {
 
     return `--pct: ${pct}`;
   });
-  eleventyConfig.addFilter('roud', (value) => Math.round(value));
+
+  eleventyConfig.addFilter('round', (value) => Math.round(value));
+  eleventyConfig.addFilter('roundMM', (value) => Math.round(value / 25.4));
 
   eleventyConfig.addPassthroughCopy('src/styles.css');
   eleventyConfig.addWatchTarget('./src/**/*.css');
