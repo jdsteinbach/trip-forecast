@@ -89,6 +89,11 @@ h1 {
   margin: 0 0 2rem;
 }
 
+.scrollable {
+  max-width: 100%;
+  overflow-x: scroll;
+  position: relative;
+}
 section {
   margin: 0 0 4rem;
 }
@@ -98,14 +103,25 @@ table {
   border-spacing: 0.125rem;
 }
 
-th {
+th:first-child {
   padding: 0.5rem;
+  height: 100%;
   vertical-align: top;
   font-size: 0.85rem;
+  text-align: right;
+  z-index: 1;
+  position: sticky;
+  left: 0;
+  background-image: linear-gradient(
+    90deg,
+    #fff 0%,
+    #fff calc(100% - .5rem),
+    transparent 100%
+  );
 }
 
-th:first-child {
-  text-align: right;
+th.route-name {
+  font-size: 1.6rem;
 }
 
 td {
@@ -131,12 +147,11 @@ td::after {
 
 td p {
   margin: 0;
-}
-
-.condition {
+  white-space: nowrap;
   display: flex;
   gap: 0.5rem;
   justify-content: space-between;
+  align-items: center;
 }
 
 .icon {
@@ -154,6 +169,18 @@ td p {
 .wind {
   font-size: 0.85rem;
   opacity: 0.55;
+}
+
+.wind__icon {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 1rem;
+  border: 1px solid currentColor;
+  font-size: 0.618rem;
+  line-height: .9rem;
+  transform-origin: center;
+  transform: rotate(var(--degrees, 0deg));
 }
 
 .has-rain {

@@ -1,4 +1,5 @@
 const format = require('date-fns/format');
+const Compass = require('cardinal-direction');
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter('yn', (pct) => (pct ? 'Yes' : 'No'));
@@ -25,9 +26,9 @@ module.exports = (eleventyConfig) => {
 
     return `--pct: ${pct}`;
   });
-
   eleventyConfig.addFilter('round', (value) => Math.round(value));
-  eleventyConfig.addFilter('roundMM', (value) => Math.round(value / 25.4));
+  eleventyConfig.addFilter('roundMM', (value) =>  Math.round(value / 0.254) / 100);
+  eleventyConfig.addFilter('degrees', (deg) => Compass.cardinalFromDegree(deg, Compass.CardinalSubset.Ordinal));
 
   eleventyConfig.addPassthroughCopy('src/styles.css');
   eleventyConfig.addWatchTarget('./src/**/*.css');

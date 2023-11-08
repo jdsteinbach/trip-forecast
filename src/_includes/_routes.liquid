@@ -5,39 +5,47 @@ layout: _base
 {{ content }}
 
 {% for r in routeData %}
+<div class="scrollable">
   <section>
-    <h2>
-      {{ r.name }}
-    </h2>
-
     <table>
       <thead>
-        <th></th>
+        <th class="route-name">{{ r.name }}</th>
         {% for dayTitle in r.stops[0].data.daily %}
           <th>{{ dayTitle.dt | day }}</th>
         {% endfor %}
       </thead>
       {% for s in r.stops %}
-        <tr>
-          <th>{{ s.city }}</th>
-          {% for d in s.data.daily %}
-            <td class="{{ d | precipClasses }}" style="{{ d | precipStyles }}">
-              <p class="condition">
-                <span>{{ d.temp.day | round }}°</span>
-                <span>{{ d.weather[0].main }}</span>
-              </p>
-              {% if d.rain %}
-                <p class="precip">Rain: {{ d.rain | roundMM }}″</p>
-              {% endif %}
-              {% if d.snow %}
-                <p class="precip">Snow: {{ d.snow | roundMM }}″</p>
-              {% endif %}
-              <p class="wind">
-                Wind: {{ d.wind_speed | round }} ⋮ {{ d.wind_gust | round }}</p>
-            </td>
-          {% endfor %}
-        </tr>
+      <tr>
+        <th>{{ s.city }}</th>
+        {% for d in s.data.daily %}
+        <td class="{{ d | precipClasses }}" style="{{ d | precipStyles }}">
+          <p class="condition">
+            <span>{{ d.temp.day | round }}°</span>
+            <span>{{ d.weather[0].main }}</span>
+          </p>
+          {% if d.rain %}
+          <p class="precip">
+            <span>Rain:</span>
+            <span>{{ d.rain | roundMM }}″</span>
+          </p>
+          {% endif %}
+          {% if d.snow %}
+          <p class="precip">
+            <span>Snow:</span>
+            <span>{{ d.snow | roundMM }}″</span>
+          </p>
+          {% endif %}
+          <p class="wind">
+            <span>Wind:</span>
+            <span class="wind__icon" style="--degrees: {{ d.wind_deg }}deg" aria-label="Wind direction: {{ d.wind_deg | degrees }}">↑</span>
+            <span>{{ d.wind_speed | round }} ⋮ {{ d.wind_gust | round }}</span>
+          </p>
+          {% comment %} <p>{{ d | json }}</p> {% endcomment %}
+        </td>
+        {% endfor %}
+      </tr>
       {% endfor %}
     </table>
-  </section>
-{% endfor %}
+    </section>
+  {% endfor %}
+</div>
