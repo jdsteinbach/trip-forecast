@@ -9,7 +9,7 @@ const routeData = routes.map((r) => {
   if (!OPENWEATHER_APIKEY) return r;
 
   const stopsForecast = Promise.all(
-    r.stops.reverse().map(async (s) => {
+    r.stops.map(async (s) => {
       try {
         const forecast = await EleventyFetch(
           `https://api.openweathermap.org/data/3.0/onecall?lat=${s.lat}&lon=${s.lon}&units=imperial&appid=${OPENWEATHER_APIKEY}`,

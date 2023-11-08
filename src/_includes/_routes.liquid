@@ -4,21 +4,24 @@ layout: _base
 
 {{ content }}
 
+<input type="checkbox" id="reverse" name="reverse" '/>
+<label for="reverse">Reverse Trip</label>
+
 {% for r in routeData %}
 <div class="scrollable">
   <section>
-    <table>
-      <thead>
-        <th class="route-name">{{ r.name }}</th>
-        {% for dayTitle in r.stops[0].data.daily %}
-          <th>{{ dayTitle.dt | day }}</th>
+    <div class="routes">
+      <div class="routes__header">
+        <div class="routes__column__label route-name">{{ r.name }}</div>
+          {% for dayTitle in r.stops[0].data.daily %}
+          <div class="routes__column__label">{{ dayTitle.dt | day }}</div>
         {% endfor %}
-      </thead>
+      </div>
       {% for s in r.stops %}
-      <tr>
-        <th>{{ s.city }}</th>
+      <div class="routes__row" style="--original-order: {{ forloop.index }}">
+        <div class="routes__row__label">{{ s.city }}</div>
         {% for d in s.data.daily %}
-        <td class="{{ d | precipClasses }}" style="{{ d | precipStyles }}">
+        <div class="routes__row__data {{ d | precipClasses }}" style="{{ d | precipStyles }}">
           <p class="condition">
             <span>{{ d.temp.day | round }}°</span>
             <span>{{ d.weather[0].main }}</span>
@@ -40,12 +43,11 @@ layout: _base
             <span class="wind__icon" style="--degrees: {{ d.wind_deg }}deg" aria-label="Wind direction: {{ d.wind_deg | degrees }}">↑</span>
             <span>{{ d.wind_speed | round }} ⋮ {{ d.wind_gust | round }}</span>
           </p>
-          {% comment %} <p>{{ d | json }}</p> {% endcomment %}
-        </td>
+        </div>
         {% endfor %}
-      </tr>
+      </div>
       {% endfor %}
-    </table>
+    </div>
     </section>
   {% endfor %}
 </div>

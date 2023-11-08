@@ -94,20 +94,46 @@ h1 {
   overflow-x: scroll;
   position: relative;
 }
+
 section {
   margin: 0 0 4rem;
 }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0.125rem;
+.routes {
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+  grid-auto-row: min-content;
+  gap: 0.25rem;
 }
 
-th:first-child {
+.routes__header,
+.routes__row {
+  display: grid;
+  grid-column: 1 / span 9;
+  grid-template-columns: subgrid;
+}
+
+.routes__header {
+  align-items: baseline;
+  order: 0;
+}
+
+.routes__row {
+  order: var(--visual-order, --original-order);
+}
+
+#reverse:checked ~ * .routes__row {
+  --visual-order: calc(999 - var(--original-order));
+}
+
+.routes__column__label,
+.routes__row__label {
   padding: 0.5rem;
-  height: 100%;
-  vertical-align: top;
   font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.routes__row__label {
   text-align: right;
   z-index: 1;
   position: sticky;
@@ -120,12 +146,12 @@ th:first-child {
   );
 }
 
-th.route-name {
+.route-name {
   font-size: 1.6rem;
+  text-align: right;
 }
 
-td {
-  vertical-align: top;
+.routes__row__data {
   padding: 0.5rem;
   border: 0.125rem solid #ccc;
   border-radius: 0.25rem;
@@ -133,7 +159,7 @@ td {
   position: relative;
 }
 
-td::after {
+.routes__row__data::after {
   content: '';
   pointer-events: none;
   position: absolute;
@@ -145,7 +171,7 @@ td::after {
   z-index: -1;
 }
 
-td p {
+.routes__row__data p {
   margin: 0;
   white-space: nowrap;
   display: flex;
