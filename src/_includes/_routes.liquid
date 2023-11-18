@@ -12,7 +12,7 @@ layout: _base
   <section>
     <div class="routes">
       <div class="routes__header">
-        <div class="routes__column__label route-name">{{ r.name }}</div>
+        <div class="routes__column__label routes__row__label route-name">{{ r.name }}</div>
           {% for dayTitle in r.stops[0].data.daily %}
           <div class="routes__column__label">{{ dayTitle.dt | day }}</div>
         {% endfor %}
@@ -49,5 +49,5 @@ layout: _base
       {% endfor %}
     </div>
     </section>
-  {% endfor %}
-</div>
+  </div>
+{% endfor %}
