@@ -1,0 +1,73 @@
+{% capture id -%}
+  hourly-{{ s.city | camelcase }}{{ d.dt }}
+{%- endcapture %}
+
+{% capture dailyday -%}
+  {{ d.dt | day }}
+{%- endcapture %}
+
+{% capture hourlydays -%}
+  {{ s.data.hourly | hourlydays }}
+{%- endcapture %}
+
+{% if hourlydays contains dailyday %}
+
+  <button data-modal-open="{{ id }}" aria-label="View hourly forecast details">
+    <span>Hourly</span>
+  </button>
+
+  <modal
+    class="hourly"
+    role="dialog"
+    id="{{ id }}">
+    <h2>Hourly Forecast</h2>
+    <button
+      type="button"
+      aria-label="Close hourly forecast details"
+      data-modal-close="{{ id }}">
+      <span aria-hidden="">×</span>
+    </button>
+    <ul class="hourly__forecasts">
+      {% for hour in s.data.hourly %}
+        {% capture hourlyday -%}
+          {{ hour.dt | day }}
+        {%- endcapture %}
+        {% if dailyday == hourlyday %}
+          <li class="hourly-forecast {{ hour | precipClasses }}" style="{{ hour | precipStyles }}">
+            <time class="hourly-forecast__title" datetime="{{ hour.dt | datetime }}">
+              {{ hour.dt | time }}
+            </time>
+            <p class="condition">
+              <span>{{ hour.temp | round }}°</span>
+              <span>{{ hour.weather[0].main }}</span>
+            </p>
+            <p class="precip">
+              {% if hour.rain %}
+                {% if hour.rain.1h %}
+                  <span>{{ hour.pop | pct }} {{ hour.rain.1h | roundMM }}/hr″</span>
+                {% else %}
+                  <span>{{ hour.pop | pct }} {{ hour.rain | roundMM }}″</span>
+                {% endif %}
+              {% endif %}
+              {% if hour.snow %}
+                {% if hour.snow.1h %}
+                  <span>{{ hour.pop | pct }} {{ hour.snow.1h | roundMM }}/hr″</span>
+                {% else %}
+                  <span>{{ hour.pop | pct }} {{ hour.snow | roundMM }}″</span>
+                {% endif %}
+              {% endif %}
+            </p>
+            <p class="wind">
+              <span>Wind:</span>
+              <span
+                class="wind__icon"
+                style="--degrees: {{ hour.wind_deg }}deg"
+                aria-label="Wind direction: {{ hour.wind_deg | degrees }}">↑</span>
+              <span>{{ hour.wind_speed | round }} | {{ hour.wind_gust | round }}</span>
+            </p>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </modal>
+{% endif %}

@@ -11,4 +11,34 @@
   <body>
     {{ content }}
   </body>
+  <script>
+    const modalOpenButtons = document.querySelectorAll('button[data-modal-open]');
+    modalOpenButtons.forEach(b => {
+      const modal = document.getElementById(b.dataset.modalOpen);
+      if (modal) {
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          if (modal.getAttribute('open')) {
+            modal.removeAttribute('open');
+          } else {
+            const maybeOpenModals = document.querySelectorAll('modal[role="dialog"][open]');
+            maybeOpenModals.forEach(m => {
+              m.removeAttribute('open');
+            });
+            modal.setAttribute('open', true);
+          }
+        });
+      }
+    });
+
+    const modalCloseButtons = document.querySelectorAll('button[data-modal-close]');
+    modalCloseButtons.forEach(b => {
+      const modal = document.getElementById(b.dataset.modalClose);
+      b.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.removeAttribute('open');
+      });
+    });
+  </script>
 </html>

@@ -1,0 +1,35 @@
+<div class="routes__row" style="--original-order: {{ forloop.index }}">
+  <div class="routes__row__label">{{ s.city }}</div>
+  {% for d in s.data.daily %}
+    <div class="routes__row__data {{ d | precipClasses }}" style="{{ d | precipStyles }}">
+      <p class="condition">
+        <span>{{ d.temp.day | round }}°</span>
+        <span>{{ d.weather[0].main }}</span>
+      </p>
+      {% if d.rain %}
+        <p class="precip">
+          <span>Rain:</span>
+          <span>{{ d.rain | roundMM }}″</span>
+        </p>
+      {% endif %}
+      {% if d.snow %}
+        <p class="precip">
+          <span>Snow:</span>
+          <span>{{ d.snow | roundMM }}″</span>
+        </p>
+      {% endif %}
+      <p class="wind">
+        <span>Wind:</span>
+        <span
+          class="wind__icon"
+          style="--degrees: {{ d.wind_deg }}deg"
+          aria-label="Wind direction: {{ d.wind_deg | degrees }}">↑</span>
+        <span>{{ d.wind_speed | round }} | {{ d.wind_gust | round }}</span>
+      </p>
+      <div>
+        {% include "_route-hourly" %}
+        {% include "_route-alerts" %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

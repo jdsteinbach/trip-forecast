@@ -1,0 +1,41 @@
+{% assign todayAlerts = s.data.alerts | todayAlerts: d.dt %}
+
+{% if todayAlerts %}
+  {% capture id -%}
+    alerts-{{ s.city | camelcase }}{{ d.dt }}
+  {%- endcapture %}
+
+  {% assign dailyday = d.dt | day %}
+
+  <button
+    class="alert-button"
+    data-modal-open="{{ id }}"
+    aria-label="View weather alerts">
+    <span>!</span>
+  </button>
+
+  <modal
+    class="alert"
+    role="dialog"
+    id="{{ id }}">
+    <p>todayAlerts:</p>
+    <pre>{{ todayAlerts | json }}</pre>
+    <h2>Alerts</h2>
+    <button
+      type="button"
+      aria-label="Close weather alerts"
+      data-modal-close="{{ id }}">
+      <span aria-hidden="">×</span>
+    </button>
+    {% for a in todayAlerts %}
+      <div class="alert">
+        <p>{{ a.sender_name }}</p>
+        <p>{{ a.event }}</p>
+        <p>{{ a.start | day }} {{ a.start | time }}&ndash;{{ a.end | day }} {{ a.end | time }}</p>
+        <p>{{ a.description }}</p>
+        <p>{{ a.tags | concat }}</p>
+      </div>
+    {% endfor %}
+  </modal>
+
+{% endif %}
