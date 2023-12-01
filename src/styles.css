@@ -250,10 +250,11 @@ modal[role='dialog'] {
   max-width: calc(100vw - 2rem);
   height: min-content;
   max-height: calc(100vh - 2rem);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-auto-rows: min-content;
   align-items: stretch;
-  justify-content: stretch;
+  justify-content: center;
+  gap: 1rem;
   position: fixed;
   top: 0;
   right: 0;
