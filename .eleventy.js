@@ -1,8 +1,10 @@
-const format = require('date-fns/format');
-const addDays = require('date-fns/addDays');
-var isSameDay = require('date-fns/isSameDay');
-var setHours = require('date-fns/setHours');
-var setMinutes = require('date-fns/setMinutes');
+const {
+  format,
+  addDays,
+  isSameDay,
+  setHours,
+  setMinutes
+} = require('date-fns');
 const Compass = require('cardinal-direction');
 
 module.exports = (eleventyConfig) => {

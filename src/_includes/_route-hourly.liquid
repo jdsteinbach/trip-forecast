@@ -44,14 +44,14 @@
             <p class="precip">
               {% if hour.rain %}
                 {% if hour.rain.1h %}
-                  <span>{{ hour.pop | pct }} {{ hour.rain.1h | roundMM }}/hr″</span>
+                  <span>{{ hour.pop | pct }} {{ hour.rain.1h | roundMM }}″/hr</span>
                 {% else %}
                   <span>{{ hour.pop | pct }} {{ hour.rain | roundMM }}″</span>
                 {% endif %}
               {% endif %}
               {% if hour.snow %}
                 {% if hour.snow.1h %}
-                  <span>{{ hour.pop | pct }} {{ hour.snow.1h | roundMM }}/hr″</span>
+                  <span>{{ hour.pop | pct }} {{ hour.snow.1h | roundMM }}″/hr</span>
                 {% else %}
                   <span>{{ hour.pop | pct }} {{ hour.snow | roundMM }}″</span>
                 {% endif %}
