@@ -1,7 +1,7 @@
-const EleventyFetch = require('@11ty/eleventy-fetch');
-const routes = require('./routes.json');
+import Fetch from '@11ty/eleventy-fetch';
+import routes from './routes.json' with { type: 'json' };
 
-require('dotenv').config();
+import 'dotenv/config'
 
 const { OPENWEATHER_APIKEY } = process.env;
 
@@ -11,7 +11,7 @@ const routeData = routes.map((r) => {
   const stopsForecast = Promise.all(
     r.stops.map(async (s) => {
       try {
-        const forecast = await EleventyFetch(
+        const forecast = await Fetch(
           `https://api.openweathermap.org/data/3.0/onecall?lat=${s.lat}&lon=${s.lon}&units=imperial&exclude=current,minutely&appid=${OPENWEATHER_APIKEY}`,
           {
             duration: '1d',
@@ -36,4 +36,4 @@ const routeData = routes.map((r) => {
   };
 });
 
-module.exports = routeData;
+export default routeData;

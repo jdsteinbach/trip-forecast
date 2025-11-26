@@ -1,13 +1,13 @@
-const {
+import {
   format,
   addDays,
   isSameDay,
   setHours,
   setMinutes
-} = require('date-fns');
-const Compass = require('cardinal-direction');
+} from 'date-fns';
+import Compass from 'cardinal-direction';
 
-module.exports = (eleventyConfig) => {
+const eleventy = (eleventyConfig) => {
   eleventyConfig.addFilter('json', (obj) => JSON.stringify(obj, null, 2));
   eleventyConfig.addFilter('yn', (pct) => (pct ? 'Yes' : 'No'));
   eleventyConfig.addFilter('day', (date) => {
@@ -118,3 +118,5 @@ module.exports = (eleventyConfig) => {
     },
   };
 };
+
+export default eleventy;
